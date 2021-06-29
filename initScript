@@ -1,3 +1,8 @@
 Enable-PSRemoting -Force
 Set-Item wsman:\localhost\client\trustedhosts *
 Restart-Service WinRM
+
+Set-PSSessionConfiguration -ShowSecurityDescriptorUI -Name Microsoft.PowerShell
+
+Test-WsMan COMPUTER
+Invoke-Command -ComputerName COMPUTER -ScriptBlock { dir } -credential USERNAME
